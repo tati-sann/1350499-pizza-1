@@ -558,11 +558,27 @@
 // Static
 import pizza from "@/static/pizza.json";
 
+// Helpers
+import {
+  normalizePizzaTypeDough,
+  normalizePizzaIngredients,
+  normalizePizzaSizes,
+  normalizePizzaSauces,
+} from "../common/helpers";
+
 export default {
   name: "IndexHone",
   data() {
     return {
       pizza,
+      pizzaTypeDough: pizza.dough.map((typeDough) =>
+        normalizePizzaTypeDough(typeDough)
+      ),
+      pizzaIngredients: pizza.ingredients.map((ingredient) =>
+        normalizePizzaIngredients(ingredient)
+      ),
+      pizzaSizes: pizza.sizes.map((size) => normalizePizzaSizes(size)),
+      pizzaSauces: pizza.sauces.map((sauce) => normalizePizzaSauces(sauce)),
     };
   },
 };
