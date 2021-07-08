@@ -555,8 +555,16 @@
 </template>
 
 <script>
+// Static
+import pizza from "@/static/pizza.json";
+
 export default {
   name: "IndexHone",
+  data() {
+    return {
+      pizza,
+    };
+  },
 };
 </script>
 
