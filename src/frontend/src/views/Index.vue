@@ -11,7 +11,7 @@
             <div class="sheet__content dough">
               <label
                 v-for="(type, index) in pizzaTypeDough"
-                :key="index"
+                :key="type.nameEng"
                 class="dough__input"
                 :class="`dough__input--${type.nameEng}`"
               >
@@ -40,7 +40,7 @@
             <div class="sheet__content diameter">
               <label
                 v-for="(size, index) in pizzaSizes"
-                :key="index"
+                :key="size.nameEng"
                 class="diameter__input"
                 :class="`diameter__input--${size.nameEng}`"
               >
@@ -71,7 +71,7 @@
 
                 <label
                   v-for="(sauce, index) in pizzaSauces"
-                  :key="index"
+                  :key="sauce.nameEng"
                   class="radio ingridients__input"
                 >
                   <input
@@ -91,8 +91,8 @@
 
                 <ul class="ingridients__list">
                   <li
-                    v-for="(ingredient, index) in pizzaIngredients"
-                    :key="index"
+                    v-for="ingredient in pizzaIngredients"
+                    :key="ingredient.nameEng"
                     class="ingridients__item"
                   >
                     <span
