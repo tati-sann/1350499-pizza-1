@@ -2,13 +2,12 @@
   <main class="content">
     <form action="#" method="post">
       <div class="content__wrapper">
-        <h1 class="title title--big">Конструктор пиццы</h1>
-
+        <base-title>Конструктор пиццы</base-title>
         <div class="content__dough">
-          <div class="sheet">
-            <h2 class="title title--small sheet__title">Выберите тесто</h2>
+          <base-sheet content-classes="dough">
+            <template #title> Выберите тесто </template>
 
-            <div class="sheet__content dough">
+            <template #content>
               <label
                 v-for="(type, index) in pizzaTypeDough"
                 :key="type.nameEng"
@@ -29,15 +28,15 @@
                   {{ type.description }}
                 </span>
               </label>
-            </div>
-          </div>
+            </template>
+          </base-sheet>
         </div>
 
         <div class="content__diameter">
-          <div class="sheet">
-            <h2 class="title title--small sheet__title">Выберите размер</h2>
+          <base-sheet content-classes="diameter">
+            <template #title> Выберите размер </template>
 
-            <div class="sheet__content diameter">
+            <template #content>
               <label
                 v-for="(size, index) in pizzaSizes"
                 :key="size.nameEng"
@@ -55,17 +54,15 @@
                   {{ size.name }}
                 </span>
               </label>
-            </div>
-          </div>
+            </template>
+          </base-sheet>
         </div>
 
         <div class="content__ingridients">
-          <div class="sheet">
-            <h2 class="title title--small sheet__title">
-              Выберите ингридиенты
-            </h2>
+          <base-sheet content-classes="ingridients">
+            <template #title> Выберите ингридиенты </template>
 
-            <div class="sheet__content ingridients">
+            <template #content>
               <div class="ingridients__sauce">
                 <p>Основной соус:</p>
 
@@ -129,8 +126,8 @@
                   </li>
                 </ul>
               </div>
-            </div>
-          </div>
+            </template>
+          </base-sheet>
         </div>
 
         <div class="content__pizza">
@@ -176,9 +173,15 @@ import {
   normalizePizzaSizes,
   normalizePizzaSauces,
 } from "../common/helpers";
+import BaseTitle from "../common/components/BaseTitle";
+import BaseSheet from "../common/components/BaseSheet";
 
 export default {
   name: "IndexHone",
+  components: {
+    BaseSheet,
+    BaseTitle,
+  },
   data() {
     return {
       pizza,
@@ -195,4 +198,4 @@ export default {
 };
 </script>
 
-<style></style>
+<style lang="scss"></style>
