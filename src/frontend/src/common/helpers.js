@@ -14,6 +14,7 @@ export const normalizePizzaIngredients = (ingredients) => {
   return {
     ...ingredients,
     nameEng: pizzaIngredients[ingredients.name],
+    value: 0,
   };
 };
 
