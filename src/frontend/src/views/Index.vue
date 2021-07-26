@@ -66,21 +66,14 @@
               <div class="ingridients__sauce">
                 <p>Основной соус:</p>
 
-                <label
-                  v-for="(sauce, index) in pizzaSauces"
+                <base-radio-button
+                  v-for="sauce in pizzaSauces"
                   :key="sauce.nameEng"
-                  class="radio ingridients__input"
-                >
-                  <input
-                    type="radio"
-                    name="sauce"
-                    :value="sauce.nameEng"
-                    :checked="index === 0"
-                  />
-                  <span>
-                    {{ sauce.name }}
-                  </span>
-                </label>
+                  v-model="selectedSauce"
+                  :label="sauce.name"
+                  :value="sauce.nameEng"
+                  class="ingridients__input"
+                />
               </div>
 
               <div class="ingridients__filling">
@@ -99,30 +92,7 @@
                       {{ ingredient.name }}
                     </span>
 
-                    <div class="counter counter--orange ingridients__counter">
-                      <button
-                        type="button"
-                        class="
-                          counter__button
-                          counter__button--disabled
-                          counter__button--minus
-                        "
-                      >
-                        <span class="visually-hidden">Меньше</span>
-                      </button>
-                      <input
-                        type="text"
-                        name="counter"
-                        class="counter__input"
-                        value="0"
-                      />
-                      <button
-                        type="button"
-                        class="counter__button counter__button--plus"
-                      >
-                        <span class="visually-hidden">Больше</span>
-                      </button>
-                    </div>
+                    <base-counter v-model="ingredient.value" />
                   </li>
                 </ul>
               </div>
@@ -175,10 +145,14 @@ import {
 } from "../common/helpers";
 import BaseTitle from "../common/components/BaseTitle";
 import BaseSheet from "../common/components/BaseSheet";
+import BaseRadioButton from "../common/components/BaseRadioButton";
+import BaseCounter from "../common/components/BaseCounter";
 
 export default {
   name: "IndexHone",
   components: {
+    BaseCounter,
+    BaseRadioButton,
     BaseSheet,
     BaseTitle,
   },
@@ -193,6 +167,8 @@ export default {
       ),
       pizzaSizes: pizza.sizes.map((size) => normalizePizzaSizes(size)),
       pizzaSauces: pizza.sauces.map((sauce) => normalizePizzaSauces(sauce)),
+
+      selectedSauce: "tomato",
     };
   },
 };
