@@ -4,7 +4,10 @@
       <div class="content__wrapper">
         <base-title>Конструктор пиццы</base-title>
         <div class="content__dough">
-          <builder-dough-selector :pizza-type-dough="pizzaTypeDough" />
+          <builder-dough-selector
+            :pizza-type-dough="pizzaTypeDough"
+            @setDoughType="setDoughType"
+          />
         </div>
 
         <div class="content__diameter">
@@ -62,16 +65,16 @@ import {
   normalizePizzaSauces,
 } from "../common/helpers";
 import BaseTitle from "../common/components/BaseTitle";
-import BuilderDoughSelector from "../modules/builder/components/BuilderDoughSelector";
 import BuilderSizeSelector from "../modules/builder/components/BuilderSizeSelector";
 import BuilderIngredientsSelector from "../modules/builder/components/BuilderIngredientsSelector";
+import BuilderDoughSelector from "../modules/builder/components/builderDough/BuilderDoughSelector";
 
 export default {
   name: "IndexHone",
   components: {
+    BuilderDoughSelector,
     BuilderIngredientsSelector,
     BuilderSizeSelector,
-    BuilderDoughSelector,
     BaseTitle,
   },
   data() {
@@ -86,6 +89,12 @@ export default {
       pizzaSizes: pizza.sizes.map((size) => normalizePizzaSizes(size)),
       pizzaSauces: pizza.sauces.map((sauce) => normalizePizzaSauces(sauce)),
     };
+  },
+
+  methods: {
+    setDoughType(doughType) {
+      console.log(doughType);
+    },
   },
 };
 </script>
