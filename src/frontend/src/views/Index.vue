@@ -12,45 +12,10 @@
         </div>
 
         <div class="content__ingridients">
-          <base-sheet content-classes="ingridients">
-            <template #title> Выберите ингридиенты </template>
-
-            <template #content>
-              <div class="ingridients__sauce">
-                <p>Основной соус:</p>
-
-                <base-radio-button
-                  v-for="sauce in pizzaSauces"
-                  :key="sauce.nameEng"
-                  v-model="selectedSauce"
-                  :label="sauce.name"
-                  :value="sauce.nameEng"
-                  class="ingridients__input"
-                />
-              </div>
-
-              <div class="ingridients__filling">
-                <p>Начинка:</p>
-
-                <ul class="ingridients__list">
-                  <li
-                    v-for="ingredient in pizzaIngredients"
-                    :key="ingredient.nameEng"
-                    class="ingridients__item"
-                  >
-                    <span
-                      class="filling"
-                      :class="`filling--${ingredient.nameEng}`"
-                    >
-                      {{ ingredient.name }}
-                    </span>
-
-                    <base-counter v-model="ingredient.value" />
-                  </li>
-                </ul>
-              </div>
-            </template>
-          </base-sheet>
+          <builder-ingredients-selector
+            :pizza-sauces="pizzaSauces"
+            :pizza-ingredients="pizzaIngredients"
+          />
         </div>
 
         <div class="content__pizza">
@@ -97,20 +62,16 @@ import {
   normalizePizzaSauces,
 } from "../common/helpers";
 import BaseTitle from "../common/components/BaseTitle";
-import BaseSheet from "../common/components/BaseSheet";
-import BaseRadioButton from "../common/components/BaseRadioButton";
-import BaseCounter from "../common/components/BaseCounter";
 import BuilderDoughSelector from "../modules/builder/components/BuilderDoughSelector";
 import BuilderSizeSelector from "../modules/builder/components/BuilderSizeSelector";
+import BuilderIngredientsSelector from "../modules/builder/components/BuilderIngredientsSelector";
 
 export default {
   name: "IndexHone",
   components: {
+    BuilderIngredientsSelector,
     BuilderSizeSelector,
     BuilderDoughSelector,
-    BaseCounter,
-    BaseRadioButton,
-    BaseSheet,
     BaseTitle,
   },
   data() {
@@ -124,8 +85,6 @@ export default {
       ),
       pizzaSizes: pizza.sizes.map((size) => normalizePizzaSizes(size)),
       pizzaSauces: pizza.sauces.map((sauce) => normalizePizzaSauces(sauce)),
-
-      selectedSauce: "tomato",
     };
   },
 };
