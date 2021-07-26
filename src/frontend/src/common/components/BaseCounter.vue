@@ -1,6 +1,9 @@
 <template>
   <div class="counter counter--orange ingridients__counter">
-    <base-counter-button :is-disabled="value === 0" @click="decrementCounter" />
+    <base-counter-button
+      :is-disabled="value === minValue"
+      @click="decrementCounter"
+    />
     <input
       type="text"
       name="counter"
@@ -10,7 +13,7 @@
     />
     <base-counter-button
       is-plus
-      :is-disabled="value === 3"
+      :is-disabled="value === maxValue"
       @click="incrementCounter"
     />
   </div>
@@ -29,6 +32,14 @@ export default {
   },
   props: {
     modelValue: {
+      type: Number,
+      default: () => 0,
+    },
+    maxValue: {
+      type: Number,
+      default: () => 3,
+    },
+    minValue: {
       type: Number,
       default: () => 0,
     },
