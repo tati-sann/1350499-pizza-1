@@ -11,18 +11,21 @@ export default {
       type: Boolean,
       default: () => false,
     },
-    classes: {
+    childClass: {
       type: String,
       default: () => "",
     },
   },
   render(createElement, context) {
+    let classes = [
+      `title`,
+      `title--${context.props.isSmallSize ? "small" : "big"}`,
+    ];
+    if (context.props.childClass) classes.push(context.props.childClass);
     return createElement(
       "h" + context.props.level,
       {
-        class: `title title--${context.props.isSmallSize ? "small" : "big"} ${
-          context.props.classes
-        }`,
+        class: classes,
       },
       context.children
     );

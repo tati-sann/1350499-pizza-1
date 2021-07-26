@@ -1,6 +1,6 @@
 <template>
   <div class="sheet">
-    <base-title level="2" is-small-size classes="sheet__title">
+    <base-title level="2" is-small-size childClass="sheet__title">
       <slot name="title" />
     </base-title>
 
