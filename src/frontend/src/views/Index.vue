@@ -8,29 +8,7 @@
         </div>
 
         <div class="content__diameter">
-          <base-sheet content-classes="diameter">
-            <template #title> Выберите размер </template>
-
-            <template #content>
-              <label
-                v-for="(size, index) in pizzaSizes"
-                :key="size.nameEng"
-                class="diameter__input"
-                :class="`diameter__input--${size.nameEng}`"
-              >
-                <input
-                  type="radio"
-                  name="diameter"
-                  :value="size.nameEng"
-                  class="visually-hidden"
-                  :checked="index === 1"
-                />
-                <span>
-                  {{ size.name }}
-                </span>
-              </label>
-            </template>
-          </base-sheet>
+          <builder-size-selector :pizza-sizes="pizzaSizes" />
         </div>
 
         <div class="content__ingridients">
@@ -123,10 +101,12 @@ import BaseSheet from "../common/components/BaseSheet";
 import BaseRadioButton from "../common/components/BaseRadioButton";
 import BaseCounter from "../common/components/BaseCounter";
 import BuilderDoughSelector from "../modules/builder/components/BuilderDoughSelector";
+import BuilderSizeSelector from "../modules/builder/components/BuilderSizeSelector";
 
 export default {
   name: "IndexHone",
   components: {
+    BuilderSizeSelector,
     BuilderDoughSelector,
     BaseCounter,
     BaseRadioButton,
