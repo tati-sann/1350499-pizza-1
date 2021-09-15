@@ -20,16 +20,11 @@
         <p>Начинка:</p>
 
         <ul class="ingridients__list">
-          <li
+          <builder-ingredients-item
             v-for="ingredient in pizzaIngredients"
             :key="ingredient.nameEng"
-            class="ingridients__item"
-          >
-            <span class="filling" :class="`filling--${ingredient.nameEng}`">
-              {{ ingredient.name }}
-            </span>
-            <base-counter v-model="ingredient.value" />
-          </li>
+            :ingredient="ingredient"
+          />
         </ul>
       </div>
     </template>
@@ -37,15 +32,15 @@
 </template>
 
 <script>
-import BaseSheet from "../../../common/components/BaseSheet";
-import BaseCounter from "../../../common/components/BaseCounter";
-import BaseRadioButton from "../../../common/components/BaseRadioButton";
+import BaseSheet from "../../../../common/components/BaseSheet";
+import BaseRadioButton from "../../../../common/components/BaseRadioButton";
+import BuilderIngredientsItem from "./BuilderIngredientsItem";
 
 export default {
   name: "BuilderIngredientsSelector",
   components: {
+    BuilderIngredientsItem,
     BaseSheet,
-    BaseCounter,
     BaseRadioButton,
   },
   props: {
@@ -59,7 +54,7 @@ export default {
     },
     defaultSelectedSauce: {
       type: String,
-      default: () => "tomato",
+      default: "tomato",
     },
   },
   data() {
