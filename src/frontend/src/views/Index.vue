@@ -18,18 +18,16 @@
           <builder-ingredients-selector
             :pizza-sauces="pizzaSauces"
             :pizza-ingredients="pizzaIngredients"
+            @setIngredientValue="setIngredientValue"
           />
         </div>
 
         <div class="content__pizza">
-          <label class="input">
-            <span class="visually-hidden">Название пиццы</span>
-            <input
-              type="text"
-              name="pizza_name"
-              placeholder="Введите название пиццы"
-            />
-          </label>
+          <base-text-input
+            v-model="pizzaName"
+            placeholder="Введите название пиццы"
+            label="Название пиццы"
+          />
 
           <div class="content__constructor">
             <div class="pizza pizza--foundation--big-tomato">
@@ -66,12 +64,14 @@ import {
 } from "../common/helpers";
 import BaseTitle from "../common/components/BaseTitle";
 import BuilderSizeSelector from "../modules/builder/components/BuilderSizeSelector";
-import BuilderIngredientsSelector from "../modules/builder/components/BuilderIngredientsSelector";
+import BuilderIngredientsSelector from "../modules/builder/components/builderIngredients/BuilderIngredientsSelector";
 import BuilderDoughSelector from "../modules/builder/components/builderDough/BuilderDoughSelector";
+import BaseTextInput from "../common/components/BaseTextInput";
 
 export default {
   name: "IndexHone",
   components: {
+    BaseTextInput,
     BuilderDoughSelector,
     BuilderIngredientsSelector,
     BuilderSizeSelector,
@@ -88,12 +88,16 @@ export default {
       ),
       pizzaSizes: pizza.sizes.map((size) => normalizePizzaSizes(size)),
       pizzaSauces: pizza.sauces.map((sauce) => normalizePizzaSauces(sauce)),
+      pizzaName: "",
     };
   },
 
   methods: {
     setDoughType(doughType) {
       console.log(doughType);
+    },
+    setIngredientValue(IngredientValue) {
+      console.log(IngredientValue);
     },
   },
 };
