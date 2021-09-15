@@ -9,7 +9,7 @@
       name="counter"
       class="counter__input"
       :value="value"
-      @input="$emit('input', $event.target.value)"
+      readonly
     />
     <base-counter-button
       is-plus
@@ -21,6 +21,7 @@
 
 <script>
 import BaseCounterButton from "./BaseCounterButton";
+
 export default {
   name: "BaseCounter",
   components: {
@@ -33,30 +34,30 @@ export default {
   props: {
     modelValue: {
       type: Number,
-      default: () => 0,
+      required: true,
     },
     maxValue: {
       type: Number,
-      default: () => 3,
+      default: 3,
     },
     minValue: {
       type: Number,
-      default: () => 0,
+      default: 0,
     },
   },
-
   data() {
     return {
       value: this.modelValue,
     };
   },
-
   methods: {
     incrementCounter() {
       this.value++;
+      this.$emit("input", this.value);
     },
     decrementCounter() {
       this.value--;
+      this.$emit("input", this.value);
     },
   },
 };
