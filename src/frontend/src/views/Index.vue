@@ -41,9 +41,7 @@
 
           <div class="content__result">
             <p>Итого: 0 ₽</p>
-            <button type="button" class="button button--disabled" disabled>
-              Готовьте!
-            </button>
+            <base-button disabled> Готовьте! </base-button>
           </div>
         </div>
       </div>
@@ -67,10 +65,12 @@ import BuilderSizeSelector from "../modules/builder/components/BuilderSizeSelect
 import BuilderIngredientsSelector from "../modules/builder/components/builderIngredients/BuilderIngredientsSelector";
 import BuilderDoughSelector from "../modules/builder/components/builderDough/BuilderDoughSelector";
 import BaseTextInput from "../common/components/BaseTextInput";
+import BaseButton from "../common/components/BaseButton";
 
 export default {
   name: "IndexHone",
   components: {
+    BaseButton,
     BaseTextInput,
     BuilderDoughSelector,
     BuilderIngredientsSelector,
