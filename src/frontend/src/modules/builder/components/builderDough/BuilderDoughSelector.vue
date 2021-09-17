@@ -7,6 +7,7 @@
         v-for="type in pizzaTypeDough"
         :key="type.nameEng"
         :type="type"
+        :default-selected-type="defaultSelectedType"
         @setDoughType="setDoughType"
       />
     </template>
@@ -28,6 +29,10 @@ export default {
     pizzaTypeDough: {
       type: Array,
       required: true,
+    },
+    defaultSelectedType: {
+      type: String,
+      default: "light",
     },
   },
 

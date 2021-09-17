@@ -13,6 +13,7 @@
           :label="sauce.name"
           :value="sauce.nameEng"
           class="ingridients__input"
+          @change="setSaucesValue"
         />
       </div>
 
@@ -61,6 +62,11 @@ export default {
     return {
       selectedSauce: this.defaultSelectedSauce,
     };
+  },
+  methods: {
+    setSaucesValue(sauce) {
+      this.$emit("setSaucesValue", sauce);
+    },
   },
 };
 </script>

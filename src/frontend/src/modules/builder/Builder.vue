@@ -5,6 +5,7 @@
       <div class="content__dough">
         <builder-dough-selector
           :pizza-type-dough="pizzaSetting.pizzaTypeDough"
+          :default-selected-type="pizzaForm.doughType"
           @setDoughType="setDoughType"
         />
       </div>
@@ -17,7 +18,8 @@
         <builder-ingredients-selector
           :pizza-sauces="pizzaSetting.pizzaSauces"
           :pizza-ingredients="pizzaSetting.pizzaIngredients"
-          @setIngredientValue="setIngredientValue"
+          :default-selected-sauce="pizzaForm.sauces"
+          @setSaucesValue="setSauces"
         />
       </div>
 
@@ -32,6 +34,7 @@
           <builder-pizza
             :dough="pizzaForm.doughType"
             :sauces="pizzaForm.sauces"
+            :ingredients="pizzaForm.ingredients"
           />
         </div>
 
@@ -76,9 +79,9 @@ export default {
     return {
       pizzaForm: {
         name: "",
-        doughType: "large",
+        doughType: "light",
         sauces: "tomato",
-        ingredients: [],
+        ingredients: this.pizzaSetting.pizzaIngredients,
       },
     };
   },
@@ -88,9 +91,6 @@ export default {
     },
     setSauces(sauces) {
       this.pizzaForm.sauces = sauces;
-    },
-    setIngredientValue(IngredientValue) {
-      console.log(IngredientValue);
     },
   },
 };
